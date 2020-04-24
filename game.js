@@ -11,11 +11,19 @@ const config = {
   height: variable.height,
   scene: [BootScene, LoadScene, GameScene],
   pixelArt: true,
+  scale: {
+    mode: Phaser.Scale.FIT,
+    // orientation: Phaser.Scale.Orientation.LANDSCAPE,
+  },
 };
 
 const game = new Phaser.Game(config);
 
-window.onresize = () => {
+window.addEventListener('resize', resize);
+resize();
+
+function resize() {
+  // checkOrientation();
   let canvas = document.querySelector('canvas');
 
   let windowWidth = window.innerWidth;
@@ -31,4 +39,25 @@ window.onresize = () => {
     canvas.style.width = windowHeight * gameRatio + 'px';
     canvas.style.height = windowHeight + 'px';
   }
-};
+}
+
+function checkOrientation() {
+  let screenOrientation = window.orientation;
+  let mobile;
+  switch (screenOrientation) {
+    case 0:
+      mobile = true;
+      break;
+    case 90:
+      mobile = false;
+      break;
+    case 180:
+      mobile = true;
+      break;
+    case -90:
+      mobile = false;
+      break;
+    default:
+      console.log('implementation of screen orientation');
+  }
+}

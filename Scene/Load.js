@@ -12,9 +12,11 @@ export class LoadScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.audio('bgmusic', [
-      'assets/sounds/dj soul - Summer Adventure.mp3',
-    ]);
+    this.load.audio(
+      'bgmusic',
+      ['assets/sounds/dj soul - Summer Adventure.mp3'],
+      { loop: true }
+    );
     this.load.image('sound_true', 'assets/images/sound-on.png');
     this.load.image('sound_false', 'assets/images/sound-off.png');
     this.load.image('upVote', 'assets/images/up-vote.png');

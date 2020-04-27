@@ -7,6 +7,8 @@ export class BootScene extends Phaser.Scene {
     });
   }
 
+  init() {}
+
   preload() {
     this.load.image('background', 'assets/images/background.png');
     this.load.image('message', 'assets/images/pop-up.png');

@@ -7,13 +7,13 @@ import * as variable from './variable.js';
 const config = {
   parent: 'game',
   type: Phaser.WEBGL,
-  width: variable.width,
-  height: variable.height,
   scene: [BootScene, LoadScene, GameScene],
   pixelArt: true,
   scale: {
     mode: Phaser.Scale.FIT,
-    // orientation: Phaser.Scale.Orientation.LANDSCAPE,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    width: variable.width,
+    height: variable.height,
   },
 };
 
@@ -38,26 +38,5 @@ function resize() {
   } else {
     canvas.style.width = windowHeight * gameRatio + 'px';
     canvas.style.height = windowHeight + 'px';
-  }
-}
-
-function checkOrientation() {
-  let screenOrientation = window.orientation;
-  let mobile;
-  switch (screenOrientation) {
-    case 0:
-      mobile = true;
-      break;
-    case 90:
-      mobile = false;
-      break;
-    case 180:
-      mobile = true;
-      break;
-    case -90:
-      mobile = false;
-      break;
-    default:
-      console.log('implementation of screen orientation');
   }
 }

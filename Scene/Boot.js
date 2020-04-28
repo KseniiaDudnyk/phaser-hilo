@@ -19,7 +19,7 @@ export class BootScene extends Phaser.Scene {
   create() {
     let scale = variable.scale;
 
-    if (variable.width < 400) {
+    if (variable.width < 420) {
       const msgText = this.add.text(
         variable.width / 2,
         variable.height / 2.5,

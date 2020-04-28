@@ -23,15 +23,19 @@ export const randomNum = () => {
   return result;
 };
 
-let preWidth = window.innerWidth;
-let preHeight = window.innerHeight;
+let preWidth;
+let preHeight;
 
 if (window.innerWidth > 1000) {
   preWidth = 1000;
+} else {
+  preWidth = window.innerWidth;
 }
 
 if (window.innerHeight > 600) {
   preHeight = 600;
+} else {
+  preHeight = window.innerHeight;
 }
 
 export const width = preWidth;

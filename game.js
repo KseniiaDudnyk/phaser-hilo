@@ -19,6 +19,8 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+console.log(variable.width, variable.height);
+
 window.onresize = () => {
   location.reload();
 };

@@ -19,9 +19,9 @@ export class BootScene extends Phaser.Scene {
   create() {
     let scale = variable.scale;
 
-    this.scale.on('orientationchange', function (orientation) {
-      location.reload();
-    });
+    // this.scale.on('orientationchange', function (orientation) {
+    //   location.reload();
+    // });
 
     if (variable.width < 420) {
       const msgText = this.add.text(

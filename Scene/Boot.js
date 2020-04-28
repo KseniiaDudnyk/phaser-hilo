@@ -19,7 +19,10 @@ export class BootScene extends Phaser.Scene {
   create() {
     let scale = variable.scale;
 
-    if (this.scale.orientation === 'portrait-primary') {
+    if (
+      this.scale.orientation === 'portrait-primary' ||
+      this.scale.orientation === 'portrait'
+    ) {
       scale = variable.height / variable.width;
 
       const msgText = this.add.text(

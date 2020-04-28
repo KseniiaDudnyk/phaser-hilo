@@ -52,6 +52,11 @@ export class LoadScene extends Phaser.Scene {
   }
 
   create() {
+    const background = this.add
+      .image(0, 0, 'background')
+      .setOrigin(0, 0)
+      .setScale(this.scale);
+
     this.bgmusic = this.sound.add('bgmusic', {
       volume: 0.3,
       loop: true,

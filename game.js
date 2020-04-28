@@ -18,9 +18,12 @@ const config = {
 
 const game = new Phaser.Game(config);
 
-window.addEventListener('resize', onResize);
-
-function onResize() {
-  window.removeEventListener('resize', onResize);
-  location.reload();
-}
+let resizeTimer;
+window.onresize = function () {
+  if (resizeTimer) {
+    clearTimeout(resizeTimer);
+  }
+  resizeTimer = setTimeout(function () {
+    location.reload();
+  }, 500);
+};

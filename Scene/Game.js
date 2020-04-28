@@ -16,6 +16,8 @@ export class GameScene extends Phaser.Scene {
   preload() {}
 
   create() {
+    console.log(variable.height);
+
     const background = this.add
       .image(0, 0, 'background')
       .setOrigin(0, 0)

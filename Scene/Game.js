@@ -65,7 +65,7 @@ export class GameScene extends Phaser.Scene {
         variable.gameHeader,
         variable.textStyle
       )
-      .setFontSize(30)
+      .setFontSize(28)
       .setDepth(3);
     this.ruleHeaderText.setX(
       variable.width / 2 - this.ruleHeaderText.width / 2
@@ -94,7 +94,7 @@ export class GameScene extends Phaser.Scene {
 
     const mask = new Phaser.Display.Masks.BitmapMask(this, this.loadBar);
     swirl.mask = mask;
-    this.loadBar.setAlpha(0).setScale(this.scale / 3);
+    this.loadBar.setAlpha(0).setScale(this.scale / 4);
 
     this.timerText = this.add
       .text(
@@ -146,7 +146,7 @@ export class GameScene extends Phaser.Scene {
         variable.conditions,
         variable.textStyle
       )
-      .setFontSize(20);
+      .setFontSize(18);
     conditionText.setX(variable.width / 2 - conditionText.width / 2);
 
     this.upVote = this.add
@@ -174,7 +174,7 @@ export class GameScene extends Phaser.Scene {
       variable.textStyle
     );
     this.betDownLabel = this.add.text(
-      variable.width / 1.5 + (this.downVote.width * this.scale) / 10,
+      variable.width / 1.5 + (this.downVote.width * this.scale) / 12,
       variable.height - variable.height / 5.5,
       '',
       variable.textStyle
@@ -243,7 +243,7 @@ export class GameScene extends Phaser.Scene {
           'Sorry, it`s too late,\n game has been started without you',
           variable.textStyle
         )
-        .setFontSize(30)
+        .setFontSize(28)
         .setDepth(3);
       tooLateText.setX(variable.width / 2 - tooLateText.width / 2);
 
@@ -344,7 +344,7 @@ export class GameScene extends Phaser.Scene {
         `WILL THE NEXT NUMBER BE\nHIGHER OR LOWER?`,
         variable.textStyle
       )
-      .setFontSize(16)
+      .setFontSize(14)
       .setDepth(1);
 
     this.currRoundNumber = variable.currRound;
@@ -452,7 +452,7 @@ export class GameScene extends Phaser.Scene {
         'You win!!!',
         variable.textStyle
       )
-      .setFontSize(30)
+      .setFontSize(28)
       .setDepth(3);
     winText.setX(variable.width / 2 - winText.width / 2);
 
@@ -487,7 +487,7 @@ export class GameScene extends Phaser.Scene {
         `It's ${this.roundNumber}\nSorry, you lose`,
         variable.textStyle
       )
-      .setFontSize(30)
+      .setFontSize(28)
       .setDepth(3);
     loseText.setX(variable.width / 2 - loseText.width / 2);
 
@@ -548,7 +548,7 @@ export class GameScene extends Phaser.Scene {
         `${this.animNumber1}`,
         variable.textStyle
       )
-      .setFontSize(36);
+      .setFontSize(34);
 
     this.text2 = this.add
       .text(
@@ -557,7 +557,7 @@ export class GameScene extends Phaser.Scene {
         `${this.animNumber2}`,
         variable.textStyle
       )
-      .setFontSize(36);
+      .setFontSize(34);
 
     this.animsNumber = this.time.addEvent({
       delay: 50,

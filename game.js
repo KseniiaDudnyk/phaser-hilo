@@ -12,7 +12,7 @@ const config = {
   scene: [BootScene, LoadScene, GameScene],
   pixelArt: true,
   scale: {
-    autoCenter: Phaser.Scale.CENTER_BOTH,
+    autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
   },
 };
 

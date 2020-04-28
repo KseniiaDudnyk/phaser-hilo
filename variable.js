@@ -4,7 +4,7 @@ export const gameName = 'Higher or Lower';
 
 export const textStyle = {
   fontFamily: 'Oswald',
-  fontSize: '24px',
+  fontSize: '22px',
   color: '#FFFFE4',
   resolution: (window.devicePixelRatio = 8),
   align: 'center',

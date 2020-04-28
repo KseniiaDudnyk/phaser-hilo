@@ -19,12 +19,7 @@ export class BootScene extends Phaser.Scene {
   create() {
     let scale = variable.scale;
 
-    if (
-      this.scale.orientation === 'portrait-primary' ||
-      this.scale.orientation === 'portrait'
-    ) {
-      scale = variable.height / variable.width;
-
+    if (variable.width < 400) {
       const msgText = this.add.text(
         variable.width / 2,
         variable.height / 2.5,
@@ -32,6 +27,8 @@ export class BootScene extends Phaser.Scene {
         variable.textStyle
       );
       msgText.setX(variable.width / 2 - msgText.width / 2).setDepth(3);
+
+      scale = variable.height / variable.width;
     } else {
       if (variable.width === 1000) {
         scale = scale + 1;

@@ -12,12 +12,16 @@ const config = {
   scene: [BootScene, LoadScene, GameScene],
   pixelArt: true,
   scale: {
-    autoCenter: Phaser.Scale.CENTER_HORIZONTALLY,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
   },
 };
 
 const game = new Phaser.Game(config);
 
-window.onresize = () => {
+window.addEventListener('resize', onResize);
+
+function onResize() {
   location.reload();
-};
+
+  window.removeEventListener('resize', onResize);
+}

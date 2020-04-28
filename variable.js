@@ -35,7 +35,7 @@ if (window.innerWidth > 1000) {
 if (window.innerHeight > 600) {
   preHeight = 600;
 } else {
-  preHeight = window.innerHeight - 50;
+  preHeight = window.innerHeight - 20;
 }
 
 export const width = preWidth;

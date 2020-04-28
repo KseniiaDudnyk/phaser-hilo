@@ -10,6 +10,7 @@ export class GameScene extends Phaser.Scene {
   init(data) {
     this.soundOn = data.soundOn;
     this.bgmusic = data.bgmusic;
+    this.scale = data.scale;
   }
 
   preload() {}
@@ -18,11 +19,11 @@ export class GameScene extends Phaser.Scene {
     const background = this.add
       .image(0, 0, 'background')
       .setOrigin(0, 0)
-      .setScale(1.5);
+      .setScale(variable.scale);
 
     const soundBtn = this.add
       .image(variable.width - 80, 15, `sound_${this.soundOn}`)
-      .setScale(0.3)
+      .setScale(this.scale / 10)
       .setOrigin(0, 0)
       .setInteractive()
       .on('pointerdown', () => {
@@ -37,9 +38,14 @@ export class GameScene extends Phaser.Scene {
         }
       });
 
+    this.rulesMsgPopUp = this.add
+      .image(variable.width / 2, variable.height / 2, 'message')
+      .setScale(this.scale)
+      .setDepth(2);
+
     const headerText = this.add.text(
       variable.width / 2,
-      15,
+      variable.height / 30,
       variable.gameHeader,
       variable.textStyle
     );
@@ -47,20 +53,15 @@ export class GameScene extends Phaser.Scene {
 
     this.currRoundText = this.add.text(
       variable.width / 2,
-      15 + headerText.height,
+      variable.height / 30 + headerText.height,
       '',
       variable.textStyle
     );
 
-    this.rulesMsgPopUp = this.add
-      .image(variable.width / 2, variable.height / 2, 'message')
-      .setScale(2.5)
-      .setDepth(2);
-
     this.ruleHeaderText = this.add
       .text(
         variable.width / 2,
-        variable.height / 2.5,
+        variable.height / 2 - this.rulesMsgPopUp.height,
         variable.gameHeader,
         variable.textStyle
       )
@@ -73,7 +74,7 @@ export class GameScene extends Phaser.Scene {
     this.ruleText = this.add
       .text(
         variable.width / 2,
-        variable.height / 2,
+        variable.height / 2.2,
         'SURVIVE UNTIL THE END\nTO GET A SLICE OF THE PRIZE',
         variable.textStyle
       )
@@ -93,12 +94,12 @@ export class GameScene extends Phaser.Scene {
 
     const mask = new Phaser.Display.Masks.BitmapMask(this, this.loadBar);
     swirl.mask = mask;
-    this.loadBar.setAlpha(0);
+    this.loadBar.setAlpha(0).setScale(this.scale / 3);
 
     this.timerText = this.add
       .text(
-        variable.width / 2 - 70,
-        variable.height / 2 - 20,
+        variable.width / 2 - variable.width * 0.085,
+        variable.height / 2 - variable.height / 20,
         '',
         variable.textStyle
       )
@@ -123,10 +124,10 @@ export class GameScene extends Phaser.Scene {
     this.confirmRuleBtn = this.add
       .image(
         variable.width / 2,
-        variable.height / 2 + this.rulesMsgPopUp.height + 15,
+        variable.height / 2 + (this.rulesMsgPopUp.height * this.scale) / 2.2,
         'check'
       )
-      .setScale(0.3)
+      .setScale(this.scale / 10)
       .setInteractive()
       .on('pointerdown', () => {
         this.rulesMsgPopUp.destroy();
@@ -141,7 +142,7 @@ export class GameScene extends Phaser.Scene {
     const conditionText = this.add
       .text(
         variable.width / 2,
-        variable.height - 120,
+        variable.height - variable.height / 5,
         variable.conditions,
         variable.textStyle
       )
@@ -149,31 +150,32 @@ export class GameScene extends Phaser.Scene {
     conditionText.setX(variable.width / 2 - conditionText.width / 2);
 
     this.upVote = this.add
-      .image(variable.width / 3, variable.height - 100, 'upVoteDisable')
-      .setScale(0.3)
+      .image(
+        variable.width / 3,
+        variable.height - variable.height / 8,
+        'upVoteDisable'
+      )
+      .setScale(this.scale / 10)
       .disableInteractive();
 
     this.downVote = this.add
-      .image(variable.width / 1.5, variable.height - 100, 'downVoteDisable')
-      .setScale(0.3)
+      .image(
+        variable.width / 1.5,
+        variable.height - variable.height / 8,
+        'downVoteDisable'
+      )
+      .setScale(this.scale / 10)
       .disableInteractive();
 
     this.betUpLabel = this.add.text(
-      variable.width / 3 - 7,
-      variable.height - 160,
+      variable.width / 3 - variable.width * 0.007,
+      variable.height - variable.height / 4,
       '',
       variable.textStyle
     );
     this.betDownLabel = this.add.text(
-      variable.width / 1.5 - 7,
-      variable.height - 160,
-      '',
-      variable.textStyle
-    );
-
-    this.prevNumDashboard = this.add.text(
-      variable.width / 2.3,
-      100,
+      variable.width / 1.5 - variable.width * 0.007,
+      variable.height - variable.height / 4,
       '',
       variable.textStyle
     );
@@ -231,13 +233,13 @@ export class GameScene extends Phaser.Scene {
 
       const tooLatePopUp = this.add
         .image(variable.width / 2, variable.height / 2, 'message')
-        .setScale(2.5)
+        .setScale(this.scale)
         .setDepth(2);
 
       const tooLateText = this.add
         .text(
           variable.width / 2,
-          variable.height / 2.3,
+          variable.height / 2 - tooLatePopUp.height / 1.5,
           'Sorry, it`s too late,\n game has been started without you',
           variable.textStyle
         )
@@ -248,10 +250,10 @@ export class GameScene extends Phaser.Scene {
       const playAgainBtn = this.add
         .image(
           variable.width / 2,
-          variable.height / 2 + tooLatePopUp.height + 15,
+          variable.height / 2 + (tooLatePopUp.height * this.scale) / 3.5,
           'play'
         )
-        .setScale(0.3)
+        .setScale(this.scale / 10)
         .setInteractive()
         .on('pointerdown', () => {
           this.registry.destroy(); // destroy registry
@@ -327,8 +329,8 @@ export class GameScene extends Phaser.Scene {
 
     const gameNumber = this.add
       .text(
-        variable.width / 2 - 20,
-        variable.height / 2 - 40,
+        variable.width / 2 - variable.width * 0.02,
+        variable.height / 2 - variable.height / 15,
         `${this.roundNumber}`,
         variable.textStyle
       )
@@ -337,22 +339,38 @@ export class GameScene extends Phaser.Scene {
 
     const gameNumberQuestionText = this.add
       .text(
-        variable.width / 2,
-        variable.height / 2 + gameNumber.height,
+        variable.width * 0.75,
+        variable.height / 2 - variable.height / 15,
         `WILL THE NEXT NUMBER BE\nHIGHER OR LOWER?`,
         variable.textStyle
       )
       .setFontSize(16)
       .setDepth(1);
-    gameNumberQuestionText.setX(
-      variable.width / 2 - gameNumberQuestionText.width / 2
-    );
 
     this.currRoundNumber = variable.currRound;
     this.currRoundText.setText(`ROUND ${this.currRoundNumber}`);
     this.currRoundText.setX(variable.width / 2 - this.currRoundText.width / 2);
 
     this.timeToPlayAnim = 2500;
+
+    const prevText = this.add
+      .text(
+        variable.width * 0.25,
+        variable.height / 2 - variable.height / 15,
+        'Previous numbers',
+        variable.textStyle
+      )
+      .setFontSize(16)
+      .setVisible(false);
+
+    prevText.setX(variable.width * 0.25 - prevText.width);
+
+    this.prevNumDashboard = this.add.text(
+      variable.width * 0.25 - prevText.width,
+      variable.height / 2 - variable.height / 15,
+      '',
+      variable.textStyle
+    );
 
     setTimeout(() => {
       gameNumber.setVisible(false);
@@ -371,11 +389,9 @@ export class GameScene extends Phaser.Scene {
 
       gameNumber.setVisible(true);
 
-      const prevText = this.add
-        .text(50, 100, 'Previous numbers', variable.textStyle)
-        .setFontSize(16);
+      prevText.setVisible(true);
 
-      this.prevNumDashboard.setText(`${this.prevNumbers.join(' ')}`);
+      this.prevNumDashboard.setText(`\n${this.prevNumbers.join(' ')}`);
 
       gameNumber.setText(`${this.roundNumber}`);
 
@@ -426,13 +442,13 @@ export class GameScene extends Phaser.Scene {
   showWinPopUp() {
     const winMsgPopUp = this.add
       .image(variable.width / 2, variable.height / 2, 'message')
-      .setScale(2.5)
+      .setScale(this.scale)
       .setDepth(2);
 
     const winText = this.add
       .text(
         variable.width / 2,
-        variable.height / 2.3,
+        variable.height / 2 - winMsgPopUp.height / 1.5,
         'You win!!!',
         variable.textStyle
       )
@@ -443,10 +459,10 @@ export class GameScene extends Phaser.Scene {
     const playAgainBtn = this.add
       .image(
         variable.width / 2,
-        variable.height / 2 + this.loseMsgPopUp.height + 15,
+        variable.height / 2 + (this.loseMsgPopUp.height * this.scale) / 3.5,
         'play'
       )
-      .setScale(0.3)
+      .setScale(this.scale / 10)
       .setInteractive()
       .on('pointerdown', () => {
         this.registry.destroy(); // destroy registry
@@ -461,13 +477,13 @@ export class GameScene extends Phaser.Scene {
   showLosePopUp() {
     this.loseMsgPopUp = this.add
       .image(variable.width / 2, variable.height / 2, 'message')
-      .setScale(2.5)
+      .setScale(this.scale)
       .setDepth(2);
 
     const loseText = this.add
       .text(
         variable.width / 2,
-        variable.height / 2.3,
+        variable.height / 2 - this.loseMsgPopUp.height / 1.5,
         `It's ${this.roundNumber}\nSorry, you lose`,
         variable.textStyle
       )
@@ -478,10 +494,10 @@ export class GameScene extends Phaser.Scene {
     const playAgainBtn = this.add
       .image(
         variable.width / 2,
-        variable.height / 2 + this.loseMsgPopUp.height + 15,
+        variable.height / 2 + (this.loseMsgPopUp.height * this.scale) / 3.5,
         'play'
       )
-      .setScale(0.3)
+      .setScale(this.scale / 10)
       .setInteractive()
       .on('pointerdown', () => {
         this.registry.destroy(); // destroy registry
@@ -527,8 +543,8 @@ export class GameScene extends Phaser.Scene {
 
     this.text1 = this.add
       .text(
-        variable.width / 2 - 20,
-        variable.height / 2 - 40,
+        variable.width / 2 - variable.width * 0.02,
+        variable.height / 2 - variable.height / 20,
         `${this.animNumber1}`,
         variable.textStyle
       )
@@ -536,8 +552,8 @@ export class GameScene extends Phaser.Scene {
 
     this.text2 = this.add
       .text(
-        variable.width / 2 - 20,
-        variable.height / 2 - 20,
+        variable.width / 2 - variable.width * 0.02,
+        variable.height / 2 - variable.height / 20,
         `${this.animNumber2}`,
         variable.textStyle
       )
@@ -552,19 +568,19 @@ export class GameScene extends Phaser.Scene {
   }
 
   randomAnim() {
-    this.text1.y += 22;
-    this.text2.y += 22;
+    this.text1.y += variable.width / 30;
+    this.text2.y += variable.width / 30;
 
     this.text1.setVisible(true);
     this.text2.setVisible(true);
 
-    if (this.text1.y >= variable.height / 2 + 15) {
-      this.text1.y = variable.height / 2 - 105;
+    if (this.text1.y >= variable.height / 2 + variable.height / 30) {
+      this.text1.y = variable.height / 2 - variable.height / 5;
       this.animNumber1 = variable.randomNum();
       this.text1.setText(`${this.animNumber1}`);
     }
-    if (this.text2.y >= variable.height / 2 + 15) {
-      this.text2.y = variable.height / 2 - 85;
+    if (this.text2.y >= variable.height / 2 + variable.height / 30) {
+      this.text2.y = variable.height / 2 - variable.height / 7;
       this.animNumber2 = variable.randomNum();
       this.text2.setText(`${this.animNumber2}`);
     }

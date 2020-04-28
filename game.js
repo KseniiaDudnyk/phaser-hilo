@@ -19,11 +19,14 @@ const config = {
 
 const game = new Phaser.Game(config);
 
+window.onresize = () => {
+  location.reload();
+};
+
 window.addEventListener('resize', resize);
 resize();
 
 function resize() {
-  // checkOrientation();
   let canvas = document.querySelector('canvas');
 
   let windowWidth = window.innerWidth;

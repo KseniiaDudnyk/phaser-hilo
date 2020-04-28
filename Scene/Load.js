@@ -9,6 +9,7 @@ export class LoadScene extends Phaser.Scene {
 
   init(data) {
     this.soundOn = data.soundOn;
+    this.scale = data.scale;
   }
 
   preload() {
@@ -58,9 +59,17 @@ export class LoadScene extends Phaser.Scene {
 
     if (this.soundOn) {
       this.bgmusic.play();
-      this.scene.start('GAME', { soundOn: true, bgmusic: this.bgmusic });
+      this.scene.start('GAME', {
+        soundOn: true,
+        bgmusic: this.bgmusic,
+        scale: this.scale,
+      });
     } else {
-      this.scene.start('GAME', { soundOn: false, bgmusic: this.bgmusic });
+      this.scene.start('GAME', {
+        soundOn: false,
+        bgmusic: this.bgmusic,
+        scale: this.scale,
+      });
     }
   }
 }

@@ -152,7 +152,7 @@ export class GameScene extends Phaser.Scene {
     this.upVote = this.add
       .image(
         variable.width / 3,
-        variable.height - variable.height / 8,
+        variable.height - variable.height / 7,
         'upVoteDisable'
       )
       .setScale(this.scale / 10)

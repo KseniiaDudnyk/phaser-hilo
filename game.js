@@ -21,7 +21,6 @@ const game = new Phaser.Game(config);
 window.addEventListener('resize', onResize);
 
 function onResize() {
-  location.reload();
-
   window.removeEventListener('resize', onResize);
+  location.reload();
 }

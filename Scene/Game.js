@@ -168,14 +168,14 @@ export class GameScene extends Phaser.Scene {
       .disableInteractive();
 
     this.betUpLabel = this.add.text(
-      variable.width / 3 - variable.width * 0.007,
-      variable.height - variable.height / 4,
+      variable.width / 3 - (this.upVote.width * this.scale) / 10,
+      variable.height - variable.height / 5.5,
       '',
       variable.textStyle
     );
     this.betDownLabel = this.add.text(
-      variable.width / 1.5 - variable.width * 0.007,
-      variable.height - variable.height / 4,
+      variable.width / 1.5 + (this.downVote.width * this.scale) / 10,
+      variable.height - variable.height / 5.5,
       '',
       variable.textStyle
     );
